@@ -1,0 +1,55 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// Function to sort string in ascending order
+void sortString(char* s) {
+    int len = strlen(s);
+    for (int i = 0; i < len - 1; ++i) {
+        for (int j = i + 1; j < len; ++j) {
+            if (s[i] > s[j]) {
+                char temp = s[i];
+                s[i] = s[j];
+                s[j] = temp;
+            }
+        }
+    }
+}
+
+// Function to find starting index of repeated characters in sorted string
+void findRepeatedCharacters(char* s) {
+    int len = strlen(s);
+    for (int i = 0; i < len - 1; ++i) {
+        if (s[i] == s[i + 1]) {
+            printf("%c, starting index: %d\n", s[i], i);
+            while (i < len - 1 && s[i] == s[i + 1]) {
+                ++i;
+            }
+        }
+    }
+}
+
+int main() {
+    char s1[] = "tree";
+    char s2[] = "kkj";
+    char s3[] = "cccaaa";
+    char s4[] = "aabb";
+
+    sortString(s1);
+    printf("Sorted String: %s, ", s1);
+    findRepeatedCharacters(s1);
+
+    sortString(s2);
+    printf("Sorted String: %s, ", s2);
+    findRepeatedCharacters(s2);
+
+    sortString(s3);
+    printf("Sorted String: %s, ", s3);
+    findRepeatedCharacters(s3);
+
+    sortString(s4);
+    printf("Sorted String: %s, ", s4);
+    findRepeatedCharacters(s4);
+
+    return 0;
+}
